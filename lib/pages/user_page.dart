@@ -6,8 +6,15 @@ class UserPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('User'),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'User',
+          style: TextStyle(fontSize: 28),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.indigo,
+      ),
     );
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class User {
   User({
     this.id,
@@ -17,7 +19,9 @@ class User {
   String? createdAt;
   String? updatedAt;
 
-  factory User.fromJson(Map<String, dynamic> json) => User(
+  factory User.fromJson(String str) => User.fromMap(json.decode(str));
+
+  factory User.fromMap(Map<String, dynamic> json) => User(
         id: json["id"],
         nombre: json["nombre"],
         apellido: json["apellido"],
@@ -27,7 +31,7 @@ class User {
         updatedAt: json["updatedAt"],
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toMap() => {
         "id": id,
         "nombre": nombre,
         "apellido": apellido,

@@ -20,7 +20,7 @@ class AppState extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (_) => UserProvider(),
-          lazy: false,
+          lazy: true,
         ),
       ],
       child: const MyApp(),
@@ -40,7 +40,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    connect();
+    // connect();
   }
 
   @override
@@ -53,13 +53,13 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-  void connect() {
-    socket = IO.io("http://10.0.2.2:3000", <String, dynamic>{
-      "transports": ["websocket"],
-      "autoConnect": false,
-    });
-    socket.connect();
-    socket.emit('alert', "Hola angular");
-    socket.on('list', (data) => {print(data)});
-  }
+  // void connect() {
+  //   socket = IO.io("http://10.0.2.2:3000", <String, dynamic>{
+  //     "transports": ["websocket"],
+  //     "autoConnect": false,
+  //   });
+  //   socket.connect();
+  // socket.emit('alert', "Hola angular");
+  // socket.on('list', (data) => {print(data)});
+  // }
 }

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 // Ours
 import 'package:app_llevaloo/pages/create_user.dart';
 import 'package:app_llevaloo/pages/list_user_page.dart';
-import 'package:app_llevaloo/pages/user_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -58,25 +57,6 @@ class HomePage extends StatelessWidget {
               ),
               onTap: () {
                 Navigator.pushNamed(context, CreateUser.routeName);
-              },
-            ),
-            const Divider(),
-            ListTile(
-              leading: const Icon(
-                Icons.person_outline,
-                size: 30,
-                color: Colors.indigo,
-              ),
-              title: const Text(
-                'Usuario XXX',
-                style: TextStyle(color: Colors.indigo, fontSize: 21),
-              ),
-              subtitle: const Text(
-                'Crea usuario en la base de datos',
-                style: TextStyle(fontSize: 14),
-              ),
-              onTap: () {
-                Navigator.pushNamed(context, UserPage.routeName);
               },
             ),
           ],
