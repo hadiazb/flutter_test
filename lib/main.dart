@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 // Ours
-import 'package:app_llevaloo/providers/users_provider.dart';
-import 'package:app_llevaloo/pages/home_page.dart';
+
+// Providers
+import 'package:app_llevaloo/providers/providers.dart';
+
+// UI
+import 'package:app_llevaloo/ui/pages/pages.dart';
+
+// Router
 import 'package:app_llevaloo/router/routes.dart';
 
 void main() {
@@ -19,8 +24,8 @@ class AppState extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => UserProvider(),
-          lazy: true,
+          create: (_) => UsersProvider(),
+          lazy: false,
         ),
       ],
       child: const MyApp(),
@@ -36,11 +41,9 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  late IO.Socket socket;
   @override
   void initState() {
     super.initState();
-    // connect();
   }
 
   @override
@@ -52,14 +55,4 @@ class _MyAppState extends State<MyApp> {
       routes: getApplicationRoutes(),
     );
   }
-
-  // void connect() {
-  //   socket = IO.io("http://10.0.2.2:3000", <String, dynamic>{
-  //     "transports": ["websocket"],
-  //     "autoConnect": false,
-  //   });
-  //   socket.connect();
-  // socket.emit('alert', "Hola angular");
-  // socket.on('list', (data) => {print(data)});
-  // }
 }

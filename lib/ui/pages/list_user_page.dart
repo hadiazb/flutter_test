@@ -1,10 +1,15 @@
-import 'package:app_llevaloo/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 // Ours
-import 'package:app_llevaloo/widgets/card_user_widget.dart';
-import 'package:app_llevaloo/providers/users_provider.dart';
+// Models
+import 'package:app_llevaloo/domain/models/user/user_model.dart';
+
+// UI
+import 'package:app_llevaloo/ui/widgets/widgets.dart';
+
+// State
+import 'package:app_llevaloo/providers/user_provider.dart';
 
 class ListUsers extends StatefulWidget {
   const ListUsers({Key? key}) : super(key: key);
@@ -17,23 +22,26 @@ class ListUsers extends StatefulWidget {
 class _ListUsersState extends State<ListUsers> {
   @override
   Widget build(BuildContext context) {
+    print('UI List page');
     late List<User> users = [];
     int count = 0;
-    final userList = Provider.of<UserProvider>(context);
-    users = userList.users;
 
-    userList.socket.on('create-user', (user) {
+    final usersList = Provider.of<UsersProvider>(context);
+    users = usersList.users;
+
+    void setStateIfMounted(f) {
+      if (mounted) setState(f);
+    }
+
+    usersList.socket.on('create-user', (user) {
       if (count == 0) {
-        User newUser = User(
-            createdAt: user["createAt"],
-            updatedAt: user["updateAt"],
-            id: user["id"],
-            apellido: user["apellido"],
-            sexo: user["sexo"],
-            edad: user["edad"],
-            nombre: user["nombre"]);
+        User newUser = User.fromMap(user);
         count = count + 1;
-        setState(() {
+        // setState(() {
+        //   users.add(newUser);
+        // });
+
+        setStateIfMounted(() {
           users.add(newUser);
         });
       }
@@ -52,7 +60,7 @@ class _ListUsersState extends State<ListUsers> {
           itemCount: users.length,
           scrollDirection: Axis.vertical,
           itemBuilder: (_, int i) {
-            return CardUser(users: userList, user: users[i]);
+            return CardUserWidget(users: usersList, user: users[i]);
           }),
     );
   }

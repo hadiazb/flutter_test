@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 // Ours
-import 'package:app_llevaloo/pages/create_user.dart';
-import 'package:app_llevaloo/pages/list_user_page.dart';
+import 'package:app_llevaloo/ui/pages/pages.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -10,6 +9,7 @@ class HomePage extends StatelessWidget {
   static const String routeName = 'home';
   @override
   Widget build(BuildContext context) {
+    print('UI home page');
     return Scaffold(
         appBar: AppBar(
           title: const Text(
@@ -56,7 +56,7 @@ class HomePage extends StatelessWidget {
                 style: TextStyle(fontSize: 14),
               ),
               onTap: () {
-                Navigator.pushNamed(context, CreateUser.routeName);
+                Navigator.pushNamed(context, CreateUserPage.routeName);
               },
             ),
           ],
