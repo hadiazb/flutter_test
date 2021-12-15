@@ -1,7 +1,7 @@
 import 'package:http/http.dart' as http;
 
 // Ours
-import 'package:app_llevaloo/domain/models/user/user_model.dart';
+import 'package:app_llevaloo/domain/models/models.dart';
 import 'package:app_llevaloo/domain/models/user/gateway/user_gateway.dart';
 
 class UserApi extends UserGateway {
@@ -20,5 +20,12 @@ class UserApi extends UserGateway {
     final jsonData = await _getJsonData('/api/user');
     final usersResponse = usersResponseFromMap(jsonData);
     return usersResponse.users;
+  }
+
+  @override
+  Future<User> getById(String id) async {
+    final jsonData = await _getJsonData('/api/user/$id');
+    final user = User.fromJson(jsonData);
+    return user;
   }
 }

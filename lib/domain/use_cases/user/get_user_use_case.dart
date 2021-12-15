@@ -10,4 +10,9 @@ class GetUserUseCase {
     print('Dominio');
     return await _userGateway.getAll();
   }
+
+  Future<User> getById(String id) async {
+    print('Dominio');
+    return await _userGateway.getById(id);
+  }
 }

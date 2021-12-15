@@ -8,6 +8,6 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
     HomePage.routeName: (BuildContext context) => const HomePage(),
     UserPage.routeName: (BuildContext context) => const UserPage(),
     CreateUserPage.routeName: (BuildContext context) => const CreateUserPage(),
-    ListUsers.routeName: (BuildContext context) => const ListUsers(),
+    ListUsersPage.routeName: (BuildContext context) => const ListUsersPage(),
   };
 }

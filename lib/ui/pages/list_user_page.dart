@@ -9,38 +9,33 @@ import 'package:app_llevaloo/domain/models/user/user_model.dart';
 import 'package:app_llevaloo/ui/widgets/widgets.dart';
 
 // State
-import 'package:app_llevaloo/providers/user_provider.dart';
+import 'package:app_llevaloo/providers/users_provider.dart';
 
-class ListUsers extends StatefulWidget {
-  const ListUsers({Key? key}) : super(key: key);
-  static const String routeName = 'update_user';
+class ListUsersPage extends StatefulWidget {
+  const ListUsersPage({Key? key}) : super(key: key);
+  static const String routeName = 'list_user';
 
   @override
-  State<ListUsers> createState() => _ListUsersState();
+  State<ListUsersPage> createState() => _ListUsersPage();
 }
 
-class _ListUsersState extends State<ListUsers> {
+class _ListUsersPage extends State<ListUsersPage> {
   @override
   Widget build(BuildContext context) {
-    print('UI List page');
     late List<User> users = [];
     int count = 0;
 
-    final usersList = Provider.of<UsersProvider>(context);
-    users = usersList.users;
+    final userProvider = Provider.of<UsersProvider>(context);
+    users = userProvider.users;
 
     void setStateIfMounted(f) {
       if (mounted) setState(f);
     }
 
-    usersList.socket.on('create-user', (user) {
+    userProvider.socket.on('create-user', (user) {
       if (count == 0) {
         User newUser = User.fromMap(user);
         count = count + 1;
-        // setState(() {
-        //   users.add(newUser);
-        // });
-
         setStateIfMounted(() {
           users.add(newUser);
         });
@@ -60,7 +55,7 @@ class _ListUsersState extends State<ListUsers> {
           itemCount: users.length,
           scrollDirection: Axis.vertical,
           itemBuilder: (_, int i) {
-            return CardUserWidget(users: usersList, user: users[i]);
+            return CardUserWidget(users: userProvider, user: users[i]);
           }),
     );
   }

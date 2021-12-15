@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 // Ours
 import 'package:app_llevaloo/domain/models/user/user_model.dart';
-import 'package:app_llevaloo/providers/user_provider.dart';
+import 'package:app_llevaloo/providers/users_provider.dart';
 import 'package:app_llevaloo/ui/pages/pages.dart';
 
 class CardUserWidget extends StatelessWidget {
@@ -88,7 +88,8 @@ class CardUserWidget extends StatelessWidget {
               Container(),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, UserPage.routeName);
+                  Navigator.pushNamed(context, UserPage.routeName,
+                      arguments: user);
                 },
                 child: const Text('Ver más'),
                 style: ElevatedButton.styleFrom(
@@ -103,127 +104,3 @@ class CardUserWidget extends StatelessWidget {
     );
   }
 }
-
-//  return Card(
-//       elevation: 3,
-//       shadowColor: Colors.indigo,
-//       child: Container(
-//           margin:
-//               const EdgeInsets.only(top: 10, bottom: 10, left: 20, right: 20),
-//           child: Column(
-//             children: [
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                 children: [
-//                   Container(
-//                     margin: const EdgeInsets.only(top: 2, bottom: 2),
-//                     child: const Text(
-//                       'Nombre',
-//                       style: TextStyle(
-//                         color: Colors.black45,
-//                         fontSize: 14,
-//                       ),
-//                     ),
-//                   ),
-//                   Container(
-//                     margin: const EdgeInsets.only(top: 2, bottom: 2),
-//                     child: Text(
-//                       users.users.isEmpty ? 'Loading' : user.nombre,
-//                       style: const TextStyle(
-//                         color: Colors.indigo,
-//                         fontSize: 18,
-//                       ),
-//                     ),
-//                   ),
-//                   Container(
-//                     margin: const EdgeInsets.only(top: 2, bottom: 2),
-//                     child: const Text(
-//                       'Apellido',
-//                       style: TextStyle(
-//                         color: Colors.black45,
-//                         fontSize: 14,
-//                       ),
-//                     ),
-//                   ),
-//                   Container(
-//                     margin: const EdgeInsets.only(top: 2, bottom: 2),
-//                     child: Text(
-//                       users.users.isEmpty ? 'Loading' : user.apellido,
-//                       style: const TextStyle(
-//                         color: Colors.indigo,
-//                         fontSize: 18,
-//                       ),
-//                     ),
-//                   )
-//                 ],
-//               ),
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                 children: [
-//                   Container(
-//                     margin: const EdgeInsets.only(top: 2, bottom: 2),
-//                     child: const Text(
-//                       'Edad',
-//                       style: TextStyle(
-//                         color: Colors.black45,
-//                         fontSize: 14,
-//                       ),
-//                     ),
-//                   ),
-//                   Container(
-//                     margin: const EdgeInsets.only(top: 2, bottom: 2),
-//                     child: Text(
-//                       users.users.isEmpty ? 'Loading' : user.edad.toString(),
-//                       style: const TextStyle(
-//                         color: Colors.indigo,
-//                         fontSize: 18,
-//                       ),
-//                     ),
-//                   ),
-//                   Container(
-//                     margin: const EdgeInsets.only(top: 2, bottom: 2),
-//                     child: const Text(
-//                       'Sexo',
-//                       style: TextStyle(
-//                         color: Colors.black45,
-//                         fontSize: 14,
-//                       ),
-//                     ),
-//                   ),
-//                   Container(
-//                     margin: const EdgeInsets.only(top: 2, bottom: 2),
-//                     child: Text(
-//                       users.users.isEmpty
-//                           ? 'Loading'
-//                           : user.sexo == true
-//                               ? 'Male'
-//                               : 'Female',
-//                       style: const TextStyle(
-//                         color: Colors.indigo,
-//                         fontSize: 18,
-//                       ),
-//                     ),
-//                   )
-//                 ],
-//               ),
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.end,
-//                 children: [
-//                   ElevatedButton(
-//                     onPressed: () {
-//                       Navigator.pushNamed(context, UserPage.routeName);
-//                     },
-//                     child: const Icon(
-//                       Icons.remove_red_eye,
-//                       color: Colors.indigo,
-//                     ),
-//                     style: ElevatedButton.styleFrom(
-//                       elevation: 0,
-//                       primary: Colors.white,
-//                     ),
-//                   )
-//                 ],
-//               )
-//             ],
-//           )),
-//     );
