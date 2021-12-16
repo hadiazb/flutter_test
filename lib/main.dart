@@ -25,7 +25,7 @@ class AppState extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (_) => UsersProvider(),
-          lazy: false,
+          lazy: true,
         ),
       ],
       child: const MyApp(),

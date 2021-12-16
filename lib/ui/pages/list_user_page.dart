@@ -23,24 +23,13 @@ class _ListUsersPage extends State<ListUsersPage> {
   @override
   Widget build(BuildContext context) {
     late List<User> users = [];
-    int count = 0;
+    int _count = 0;
 
     final userProvider = Provider.of<UsersProvider>(context);
+    userProvider.getUsers();
     users = userProvider.users;
 
-    void setStateIfMounted(f) {
-      if (mounted) setState(f);
-    }
-
-    userProvider.socket.on('create-user', (user) {
-      if (count == 0) {
-        User newUser = User.fromMap(user);
-        count = count + 1;
-        setStateIfMounted(() {
-          users.add(newUser);
-        });
-      }
-    });
+    _socketUpdateList(userProvider, _count, users);
 
     return Scaffold(
       appBar: AppBar(
@@ -58,5 +47,18 @@ class _ListUsersPage extends State<ListUsersPage> {
             return CardUserWidget(users: userProvider, user: users[i]);
           }),
     );
+  }
+
+  void _socketUpdateList(UsersProvider provider, int count, List<User> users) {
+    provider.socket.on('create-user', (user) {
+      User newUser = User.fromMap(user);
+      setStateIfMounted(() {
+        users.add(newUser);
+      });
+    });
+  }
+
+  void setStateIfMounted(f) {
+    if (mounted) setState(f);
   }
 }

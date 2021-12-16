@@ -14,9 +14,19 @@ class UserApi extends UserGateway {
     return response.body;
   }
 
+  Future<String> _postJsonData(String endPoint, User body) async {
+    final url = Uri.http(_baseUrl, endPoint);
+    final response = await http.post(url, body: {
+      "nombre": body.nombre,
+      "apellido": body.apellido,
+      "edad": body.edad.toString(),
+      "sexo": body.sexo.toString()
+    });
+    return response.body;
+  }
+
   @override
   Future<List<User>> getAll() async {
-    print('Infra');
     final jsonData = await _getJsonData('/api/user');
     final usersResponse = usersResponseFromMap(jsonData);
     return usersResponse.users;
@@ -25,6 +35,13 @@ class UserApi extends UserGateway {
   @override
   Future<User> getById(String id) async {
     final jsonData = await _getJsonData('/api/user/$id');
+    final user = User.fromJson(jsonData);
+    return user;
+  }
+
+  @override
+  Future<User> createUser(User body) async {
+    final jsonData = await _postJsonData('/api/user/', body);
     final user = User.fromJson(jsonData);
     return user;
   }

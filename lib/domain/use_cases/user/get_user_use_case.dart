@@ -7,12 +7,10 @@ class GetUserUseCase {
   GetUserUseCase(this._userGateway);
 
   Future<List<User>> getAll() async {
-    print('Dominio');
     return await _userGateway.getAll();
   }
 
   Future<User> getById(String id) async {
-    print('Dominio');
     return await _userGateway.getById(id);
   }
 }

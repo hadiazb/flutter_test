@@ -9,7 +9,6 @@ class HomePage extends StatelessWidget {
   static const String routeName = 'home';
   @override
   Widget build(BuildContext context) {
-    print('UI home page');
     return Scaffold(
         appBar: AppBar(
           title: const Text(
