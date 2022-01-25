@@ -32,7 +32,7 @@ class CardUserWidget extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     fontSize: 14),
               ),
-              Text(users.users.isEmpty ? 'loading...' : user.id.toString(),
+              Text(users.users.isEmpty ? 'loading...' : user.Id.toString(),
                   style: const TextStyle(color: Colors.white))
             ]),
             TableRow(children: [
@@ -43,7 +43,7 @@ class CardUserWidget extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     fontSize: 14),
               ),
-              Text(users.users.isEmpty ? 'loading...' : user.nombre,
+              Text(users.users.isEmpty ? 'loading...' : user.Name.toString(),
                   style: const TextStyle(color: Colors.white))
             ]),
             TableRow(children: [
@@ -54,34 +54,19 @@ class CardUserWidget extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     fontSize: 14),
               ),
-              Text(users.users.isEmpty ? 'loading...' : user.apellido,
-                  style: const TextStyle(color: Colors.white))
-            ]),
-            TableRow(children: [
-              const Text(
-                'Edad',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 14),
-              ),
-              Text(users.users.isEmpty ? 'loading...' : user.edad.toString(),
-                  style: const TextStyle(color: Colors.white))
-            ]),
-            TableRow(children: [
-              const Text(
-                'Sexo',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 14),
-              ),
               Text(
-                  users.users.isEmpty
-                      ? 'loading...'
-                      : user.sexo == true
-                          ? 'Hombre'
-                          : 'Mujer',
+                  users.users.isEmpty ? 'loading...' : user.LastName.toString(),
+                  style: const TextStyle(color: Colors.white))
+            ]),
+            TableRow(children: [
+              const Text(
+                'Telefono',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14),
+              ),
+              Text(users.users.isEmpty ? 'loading...' : user.Phone.toString(),
                   style: const TextStyle(color: Colors.white))
             ]),
             TableRow(children: [

@@ -27,6 +27,10 @@ class AppState extends StatelessWidget {
           create: (_) => UsersProvider(),
           lazy: true,
         ),
+        ChangeNotifierProvider(
+          create: (_) => SocketProvider(),
+          lazy: true,
+        ),
       ],
       child: const MyApp(),
     );

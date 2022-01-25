@@ -15,7 +15,7 @@ class UsersResponse {
 
   int status;
   List<User> users;
-  dynamic? error;
+  dynamic error;
 
   factory UsersResponse.fromMap(Map<String, dynamic> json) => UsersResponse(
       status: json["status"],

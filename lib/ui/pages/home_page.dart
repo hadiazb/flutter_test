@@ -1,23 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 // Ours
 import 'package:app_llevaloo/ui/pages/pages.dart';
+import 'package:app_llevaloo/ui/widgets/widgets.dart';
+import 'package:app_llevaloo/providers/socket_provider.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+  static String routeName = 'home';
 
-  static const String routeName = 'home';
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  bool notification = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    final socketProvider = Provider.of<SocketProvider>(context, listen: false);
+    socketProvider.socket.on('create-user', (payload) {
+      notification = true;
+      if (mounted) {
+        setState(() {});
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            'Home',
-            style: TextStyle(fontSize: 28),
-          ),
-          centerTitle: true,
-          backgroundColor: Colors.indigo,
-        ),
+        appBar: appBarTheme(context, 'Home', notification),
         body: Column(
           children: [
             const Divider(),
@@ -36,7 +57,10 @@ class HomePage extends StatelessWidget {
                 style: TextStyle(fontSize: 14),
               ),
               onTap: () {
-                Navigator.pushNamed(context, ListUsersPage.routeName);
+                Navigator.pushNamed(
+                  context,
+                  ListUsersPage.routeName,
+                );
               },
             ),
             const Divider(),

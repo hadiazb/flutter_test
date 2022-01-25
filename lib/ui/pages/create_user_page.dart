@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 
 // Ours
 import 'package:app_llevaloo/providers/providers.dart';
+import 'package:app_llevaloo/ui/widgets/widgets.dart';
+import 'package:app_llevaloo/domain/models/models.dart';
 import 'package:app_llevaloo/ui/pages/pages.dart';
 
 class CreateUserPage extends StatefulWidget {
@@ -14,26 +16,30 @@ class CreateUserPage extends StatefulWidget {
 }
 
 class _CreateUserPageState extends State<CreateUserPage> {
-  int? _value = 1;
+  User user = User(Name: '', LastName: '', Phone: '');
+  bool notification = false;
+
+  @override
+  void initState() {
+    super.initState();
+    final socketProvider = Provider.of<SocketProvider>(context, listen: false);
+    socketProvider.socket.on('create-user', (payload) {
+      notification = true;
+      if (mounted) {
+        setState(() {});
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final userProvider = Provider.of<UsersProvider>(context);
-
-    _crearUser() async {
-      FocusScope.of(context).unfocus();
-      if (!userProvider.isValidForm()) return;
-      userProvider.isLoading = true;
-      await userProvider.createUser();
-      userProvider.isLoading = false;
-      Navigator.pushReplacementNamed(context, HomePage.routeName);
-    }
+    final _controllerName = TextEditingController();
+    final _controllerPhone = TextEditingController();
+    final _controllerLastName = TextEditingController();
 
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Crear Usuarios'),
-          centerTitle: true,
-          backgroundColor: Colors.indigo,
-        ),
+        appBar: appBarTheme(context, 'Crear Usuario', notification),
         body: Container(
           margin: const EdgeInsets.all(20),
           child: Form(
@@ -42,6 +48,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
               child: Column(
                 children: [
                   TextFormField(
+                    controller: _controllerName,
                     autocorrect: true,
                     keyboardType: TextInputType.name,
                     decoration: const InputDecoration(
@@ -54,7 +61,9 @@ class _CreateUserPageState extends State<CreateUserPage> {
                       labelText: 'Nombre del nuevo usuario',
                       labelStyle: TextStyle(color: Colors.indigo, fontSize: 12),
                     ),
-                    onChanged: (value) => userProvider.nombre = value,
+                    onChanged: (value) {
+                      user.Name = value;
+                    },
                     validator: (value) {
                       return value == '' ? 'Nombre es obligatorio' : null;
                     },
@@ -63,6 +72,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
                     height: 10,
                   ),
                   TextFormField(
+                    controller: _controllerLastName,
                     autocorrect: true,
                     keyboardType: TextInputType.name,
                     decoration: const InputDecoration(
@@ -75,7 +85,9 @@ class _CreateUserPageState extends State<CreateUserPage> {
                       labelText: 'Apellido del nuevo usuario',
                       labelStyle: TextStyle(color: Colors.indigo, fontSize: 12),
                     ),
-                    onChanged: (value) => userProvider.apellido = value,
+                    onChanged: (value) {
+                      user.LastName = value;
+                    },
                     validator: (value) {
                       return value == '' ? 'Apellido es obligatorio' : null;
                     },
@@ -84,6 +96,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
                     height: 10,
                   ),
                   TextFormField(
+                    controller: _controllerPhone,
                     autocorrect: false,
                     keyboardType: TextInputType.name,
                     decoration: const InputDecoration(
@@ -92,11 +105,13 @@ class _CreateUserPageState extends State<CreateUserPage> {
                       focusedBorder: UnderlineInputBorder(
                           borderSide:
                               BorderSide(color: Colors.indigo, width: 2)),
-                      hintText: 'edad',
-                      labelText: 'Edad del nuevo usuario',
+                      hintText: 'Telefono',
+                      labelText: 'Telefono del nuevo usuario',
                       labelStyle: TextStyle(color: Colors.indigo, fontSize: 12),
                     ),
-                    onChanged: (value) => userProvider.edad = value,
+                    onChanged: (value) {
+                      user.Phone = value;
+                    },
                     validator: (value) {
                       return null;
                     },
@@ -104,60 +119,42 @@ class _CreateUserPageState extends State<CreateUserPage> {
                   const SizedBox(
                     height: 10,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Radio(
-                          focusColor: Colors.indigo,
-                          activeColor: Colors.indigo,
-                          value: 1,
-                          groupValue: _value,
-                          onChanged: (value) {
-                            setState(() {
-                              _value = value as int?;
-                            });
-                            userProvider.sexo = true;
-                          }),
-                      const Text('Hombre'),
-                      Radio(
-                          focusColor: Colors.indigo,
-                          activeColor: Colors.indigo,
-                          value: 2,
-                          groupValue: _value,
-                          onChanged: (value) {
-                            setState(() {
-                              _value = value as int?;
-                            });
-                            userProvider.sexo = false;
-                          }),
-                      const Text('Mujer'),
-                    ],
-                  ),
                   const SizedBox(
                     height: 10,
                   ),
-                  _ButtonSend(userProvider, _crearUser)
+                  MaterialButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    color: Colors.indigo,
+                    elevation: 0,
+                    disabledColor: Colors.grey,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 80),
+                      child: Text(
+                          userProvider.isLoading
+                              ? 'Espere...'
+                              : 'Crear usuario',
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 17)),
+                    ),
+                    onPressed: userProvider.isLoading
+                        ? null
+                        : () {
+                            _crearUser(context, user, userProvider);
+                          },
+                  )
                 ],
               )),
         ));
   }
 
-  MaterialButton _ButtonSend(
-      UsersProvider userProvider, Future<void> Function() _crearUser) {
-    return MaterialButton(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        color: Colors.indigo,
-        elevation: 0,
-        disabledColor: Colors.grey,
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 80),
-          child: Text(userProvider.isLoading ? 'Espere...' : 'Crear usuario',
-              style: const TextStyle(color: Colors.white, fontSize: 17)),
-        ),
-        onPressed: userProvider.isLoading
-            ? null
-            : () {
-                _crearUser();
-              });
+  void _crearUser(BuildContext context, User body, UsersProvider userProvider) {
+    FocusScope.of(context).unfocus();
+    if (!userProvider.isValidForm()) return;
+    userProvider.isLoading = true;
+    userProvider.createUser(body);
+    userProvider.isLoading = false;
+    Navigator.pushReplacementNamed(context, HomePage.routeName);
   }
 }
