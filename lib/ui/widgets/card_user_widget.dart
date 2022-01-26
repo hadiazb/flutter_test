@@ -1,9 +1,8 @@
-// ignore_for_file: file_names
 import 'package:flutter/material.dart';
 
 // Ours
 import 'package:app_llevaloo/domain/models/user/user_model.dart';
-import 'package:app_llevaloo/providers/users_provider.dart';
+import 'package:app_llevaloo/services/services.dart';
 import 'package:app_llevaloo/ui/pages/pages.dart';
 
 class CardUserWidget extends StatelessWidget {

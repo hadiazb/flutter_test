@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 // Ours
 import 'package:app_llevaloo/ui/pages/pages.dart';
 import 'package:app_llevaloo/ui/widgets/widgets.dart';
-import 'package:app_llevaloo/providers/socket_provider.dart';
+import 'package:app_llevaloo/services/services.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

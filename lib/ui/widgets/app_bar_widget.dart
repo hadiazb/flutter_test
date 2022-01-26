@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 // Ours
-import 'package:app_llevaloo/providers/providers.dart';
+import 'package:app_llevaloo/services/services.dart';
 
 AppBar appBarTheme(BuildContext context, String title, bool notification) {
   final socketProvider = Provider.of<SocketProvider>(context, listen: true);

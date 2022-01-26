@@ -11,8 +11,8 @@ import 'package:app_llevaloo/domain/models/models.dart';
 import 'package:app_llevaloo/ui/widgets/widgets.dart';
 
 // State
-import 'package:app_llevaloo/providers/users_provider.dart';
-import 'package:app_llevaloo/providers/providers.dart';
+import 'package:app_llevaloo/services/users_services.dart';
+import 'package:app_llevaloo/services/services.dart';
 
 class ListUsersPage extends StatefulWidget {
   static String routeName = 'list_user';

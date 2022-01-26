@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 // Ours
 
 // Providers
-import 'package:app_llevaloo/providers/providers.dart';
+import 'package:app_llevaloo/services/services.dart';
 
 // UI
 import 'package:app_llevaloo/ui/pages/pages.dart';
