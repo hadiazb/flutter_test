@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:app_llevaloo/services/services.dart';
-import 'package:app_llevaloo/user/ui/pages/pages.dart';
+import 'package:app_llevaloo/marketsCategory/ui/pages/pages.dart';
 import 'package:app_llevaloo/user/ui/widgets/widgets.dart';
 
 class MarketsCategoriesPage extends StatefulWidget {

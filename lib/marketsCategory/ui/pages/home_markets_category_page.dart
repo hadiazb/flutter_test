@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 // Ours
-import 'package:app_llevaloo/user/ui/pages/pages.dart';
-import 'package:app_llevaloo/user/ui/widgets/widgets.dart';
+import 'package:app_llevaloo/marketsCategory/ui/pages/pages.dart';
+import 'package:app_llevaloo/marketsCategory/ui/widgets/widgets.dart';
 import 'package:app_llevaloo/services/services.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
-  static String routeName = 'home';
+class HomeMarketsCategoryPage extends StatefulWidget {
+  const HomeMarketsCategoryPage({Key? key}) : super(key: key);
+  static String routeName = 'home_markets_category';
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomeMarketsCategoryPage> createState() =>
+      _HomeMarketsCategoryPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomeMarketsCategoryPageState extends State<HomeMarketsCategoryPage> {
   @override
   void initState() {
     super.initState();
@@ -38,50 +39,10 @@ class _HomePageState extends State<HomePage> {
     final socketProvider = Provider.of<SocketService>(context, listen: true);
 
     return Scaffold(
-        appBar: appBarTheme(context, 'Home', socketProvider.notification),
+        appBar: appBarTheme(
+            context, 'Home MarketsCategory', socketProvider.notification),
         body: Column(
           children: [
-            const Divider(),
-            ListTile(
-              leading: const Icon(
-                Icons.people_alt,
-                size: 30,
-                color: Colors.indigo,
-              ),
-              title: const Text(
-                'Usuarios',
-                style: TextStyle(color: Colors.indigo, fontSize: 21),
-              ),
-              subtitle: const Text(
-                'Lista todos los usuarios registrados',
-                style: TextStyle(fontSize: 14),
-              ),
-              onTap: () {
-                Navigator.pushNamed(
-                  context,
-                  ListUsersPage.routeName,
-                );
-              },
-            ),
-            const Divider(),
-            ListTile(
-              leading: const Icon(
-                Icons.create_outlined,
-                size: 30,
-                color: Colors.indigo,
-              ),
-              title: const Text(
-                'Crear Usuario',
-                style: TextStyle(color: Colors.indigo, fontSize: 21),
-              ),
-              subtitle: const Text(
-                'Crea usuario en la base de datos',
-                style: TextStyle(fontSize: 14),
-              ),
-              onTap: () {
-                Navigator.pushNamed(context, CreateUserPage.routeName);
-              },
-            ),
             const Divider(),
             ListTile(
               leading: const Icon(

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 // Ours
-import 'package:app_llevaloo/user/domain/models/models.dart';
+import 'package:app_llevaloo/marketsCategory/domain/models/models.dart';
 
 MarketCatgoryResponse marketCategoryResponseFromMap(String str) =>
     MarketCatgoryResponse.fromMap(json.decode(str));

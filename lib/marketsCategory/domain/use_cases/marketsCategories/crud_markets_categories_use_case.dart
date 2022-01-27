@@ -1,5 +1,5 @@
-import 'package:app_llevaloo/user/domain/models/marketsCategories/gateway/markets_categories_gateway.dart';
-import 'package:app_llevaloo/user/domain/models/models.dart';
+import 'package:app_llevaloo/marketsCategory/domain/models/marketsCategories/gateway/markets_categories_gateway.dart';
+import 'package:app_llevaloo/marketsCategory/domain/models/models.dart';
 
 class CrudMarketsCategoriesUseCase {
   final MarketsCategoriesGateway _marketsCategoriesGateway;

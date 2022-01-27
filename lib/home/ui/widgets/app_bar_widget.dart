@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 // Ours
+// import 'package:app_llevaloo/user/ui/pages/pages.dart';
 import 'package:app_llevaloo/services/services.dart';
 
 AppBar appBarTheme(BuildContext context, String title, bool notification) {
@@ -32,6 +33,9 @@ AppBar appBarTheme(BuildContext context, String title, bool notification) {
                 padding: const EdgeInsets.all(0),
                 onPressed: () {
                   socketProvider.deleteNotification();
+                  // if (route != UserPage.routeName) {
+                  // Navigator.pushNamed(context, ListUsersPage.routeName);
+                  // }
                 },
                 icon: Icon(
                   Icons.notification_important,

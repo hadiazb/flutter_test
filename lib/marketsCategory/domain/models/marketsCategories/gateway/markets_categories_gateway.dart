@@ -1,4 +1,4 @@
-import 'package:app_llevaloo/user/domain/models/models.dart';
+import 'package:app_llevaloo/marketsCategory/domain/models/models.dart';
 
 abstract class MarketsCategoriesGateway {
   Future<List<MarketCategory>> getAll();

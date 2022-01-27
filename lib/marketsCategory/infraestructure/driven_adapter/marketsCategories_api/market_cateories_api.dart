@@ -1,8 +1,8 @@
 import 'package:http/http.dart' as http;
 
 // Ours
-import 'package:app_llevaloo/user/domain/models/models.dart';
-import 'package:app_llevaloo/user/domain/models/marketsCategories/gateway/markets_categories_gateway.dart';
+import 'package:app_llevaloo/marketsCategory/domain/models/models.dart';
+import 'package:app_llevaloo/marketsCategory/domain/models/marketsCategories/gateway/markets_categories_gateway.dart';
 
 class MarketsCategoriesApi extends MarketsCategoriesGateway {
   final String _baseUrl = '192.168.1.35:3000';

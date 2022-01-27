@@ -156,6 +156,6 @@ class _CreateUserPageState extends State<CreateUserPage> {
     userProvider.isLoading = true;
     userProvider.createUser(body);
     userProvider.isLoading = false;
-    Navigator.pushReplacementNamed(context, HomePage.routeName);
+    Navigator.pushReplacementNamed(context, HomeUserPage.routeName);
   }
 }

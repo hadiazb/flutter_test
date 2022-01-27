@@ -6,15 +6,15 @@ import 'package:app_llevaloo/user/ui/pages/pages.dart';
 import 'package:app_llevaloo/user/ui/widgets/widgets.dart';
 import 'package:app_llevaloo/services/services.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
-  static String routeName = 'home';
+class HomeUserPage extends StatefulWidget {
+  const HomeUserPage({Key? key}) : super(key: key);
+  static String routeName = 'home_user';
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomeUserPage> createState() => _HomeUserPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomeUserPageState extends State<HomeUserPage> {
   @override
   void initState() {
     super.initState();
@@ -38,7 +38,8 @@ class _HomePageState extends State<HomePage> {
     final socketProvider = Provider.of<SocketService>(context, listen: true);
 
     return Scaffold(
-        appBar: appBarTheme(context, 'Home', socketProvider.notification),
+        appBar:
+            appBarTheme(context, 'Home Usuarios', socketProvider.notification),
         body: Column(
           children: [
             const Divider(),
@@ -80,45 +81,6 @@ class _HomePageState extends State<HomePage> {
               ),
               onTap: () {
                 Navigator.pushNamed(context, CreateUserPage.routeName);
-              },
-            ),
-            const Divider(),
-            ListTile(
-              leading: const Icon(
-                Icons.store,
-                size: 30,
-                color: Colors.indigo,
-              ),
-              title: const Text(
-                'Markets-Categories',
-                style: TextStyle(color: Colors.indigo, fontSize: 21),
-              ),
-              subtitle: const Text(
-                'Mira todos los Markets-Categories',
-                style: TextStyle(fontSize: 14),
-              ),
-              onTap: () {
-                Navigator.pushNamed(context, MarketsCategoriesPage.routeName);
-              },
-            ),
-            const Divider(),
-            ListTile(
-              leading: const Icon(
-                Icons.create_outlined,
-                size: 30,
-                color: Colors.indigo,
-              ),
-              title: const Text(
-                'Crear Markets-Categories',
-                style: TextStyle(color: Colors.indigo, fontSize: 21),
-              ),
-              subtitle: const Text(
-                'Crea un Market-Categorie',
-                style: TextStyle(fontSize: 14),
-              ),
-              onTap: () {
-                Navigator.pushNamed(
-                    context, CreateMarketCategoriesPage.routeName);
               },
             ),
           ],

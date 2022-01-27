@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -11,7 +9,6 @@ import 'package:app_llevaloo/user/domain/models/models.dart';
 import 'package:app_llevaloo/user/ui/widgets/widgets.dart';
 
 // State
-import 'package:app_llevaloo/services/users_services.dart';
 import 'package:app_llevaloo/services/services.dart';
 
 class ListUsersPage extends StatefulWidget {
