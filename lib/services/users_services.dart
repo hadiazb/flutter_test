@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 // Ours
-import 'package:app_llevaloo/domain/models/models.dart';
-import 'package:app_llevaloo/config/case_use.dart';
+import 'package:app_llevaloo/user/domain/models/models.dart';
+import 'package:app_llevaloo/user/config/case_use.dart';
 
 class UsersProvider with ChangeNotifier {
   final UserUseCase _userUseCase = UserUseCase();

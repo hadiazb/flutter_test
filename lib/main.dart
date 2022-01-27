@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:app_llevaloo/services/services.dart';
 
 // UI
-import 'package:app_llevaloo/ui/pages/pages.dart';
+import 'package:app_llevaloo/user/ui/pages/home_page.dart';
 
 // Router
 import 'package:app_llevaloo/router/routes.dart';

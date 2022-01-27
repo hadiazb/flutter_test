@@ -1,8 +1,7 @@
-import 'package:app_llevaloo/ui/pages/markets_categories_page.dart';
 import 'package:flutter/material.dart';
 
 // Ours
-import 'package:app_llevaloo/ui/pages/pages.dart';
+import 'package:app_llevaloo/user/ui/pages/pages.dart';
 
 Map<String, WidgetBuilder> getApplicationRoutes() {
   return <String, WidgetBuilder>{
