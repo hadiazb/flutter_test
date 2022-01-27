@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 // Ours
-import 'package:app_llevaloo/user/domain/models/models.dart';
-import 'package:app_llevaloo/user/config/case_use.dart';
+import 'package:app_llevaloo/marketsCategory/domain/models/models.dart';
+import 'package:app_llevaloo/marketsCategory/config/case_use.dart';
 
 class MarketsCategoriesProvider with ChangeNotifier {
   final MarketsCateogoriesUseCase _marketsCategoriesUseCase =
