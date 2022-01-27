@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 // Ours
+import 'package:app_llevaloo/ui/pages/pages.dart';
 import 'package:app_llevaloo/services/services.dart';
 
 AppBar appBarTheme(BuildContext context, String title, bool notification) {
-  final socketProvider = Provider.of<SocketProvider>(context, listen: true);
-  // final route = ModalRoute.of(context)!.settings.name;
+  final socketProvider = Provider.of<SocketService>(context, listen: true);
+  final route = ModalRoute.of(context)!.settings.name;
 
   return AppBar(
     title: Text(title),
@@ -28,13 +29,28 @@ AppBar appBarTheme(BuildContext context, String title, bool notification) {
       Container(
         margin: const EdgeInsets.only(right: 10),
         child: notification
-            ? Icon(
-                Icons.notification_important,
-                color: Colors.red[300],
+            ? IconButton(
+                padding: const EdgeInsets.all(0),
+                onPressed: () {
+                  socketProvider.deleteNotification();
+                  if (route != UserPage.routeName) {
+                    Navigator.pushNamed(context, ListUsersPage.routeName);
+                  }
+                },
+                icon: Icon(
+                  Icons.notification_important,
+                  color: Colors.red[300],
+                ),
               )
-            : Icon(
-                Icons.notification_important_outlined,
-                color: Colors.blue[300],
+            : IconButton(
+                padding: const EdgeInsets.all(0),
+                onPressed: () {
+                  socketProvider.deleteNotification();
+                },
+                icon: Icon(
+                  Icons.notification_important_outlined,
+                  color: Colors.blue[300],
+                ),
               ),
       )
     ],

@@ -1,10 +1,10 @@
 import 'package:app_llevaloo/domain/models/user/gateway/user_gateway.dart';
-import 'package:app_llevaloo/domain/models/user/user_model.dart';
+import 'package:app_llevaloo/domain/models/models.dart';
 
-class GetUserUseCase {
+class CrudUserUseCase {
   final UserGateway _userGateway;
 
-  GetUserUseCase(this._userGateway);
+  CrudUserUseCase(this._userGateway);
 
   Future<List<User>> getAll() async {
     return await _userGateway.getAll();
@@ -12,5 +12,9 @@ class GetUserUseCase {
 
   Future<User> getById(String id) async {
     return await _userGateway.getById(id);
+  }
+
+  Future<User> createUser(User body) async {
+    return await _userGateway.createUser(body);
   }
 }

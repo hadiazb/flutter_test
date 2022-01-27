@@ -23,18 +23,17 @@ class ListUsersPage extends StatefulWidget {
 }
 
 class _ListUsersPage extends State<ListUsersPage> {
-  bool notification = false;
   @override
   void initState() {
     super.initState();
     final userProvider = Provider.of<UsersProvider>(context, listen: false);
     userProvider.getUsers();
 
-    final socketProvider = Provider.of<SocketProvider>(context, listen: false);
+    final socketProvider = Provider.of<SocketService>(context, listen: false);
     socketProvider.socket.on('create-user', (payload) {
       UserResponse prueba = UserResponse.fromMap(payload);
       userProvider.users.add(prueba.user);
-      notification = true;
+      socketProvider.createNotification();
       if (mounted) {
         setState(() {});
       }
@@ -49,9 +48,10 @@ class _ListUsersPage extends State<ListUsersPage> {
   @override
   Widget build(BuildContext context) {
     final userProvider = Provider.of<UsersProvider>(context, listen: true);
+    final socketProvider = Provider.of<SocketService>(context, listen: true);
 
     return Scaffold(
-      appBar: appBarTheme(context, 'Usuarios', notification),
+      appBar: appBarTheme(context, 'Usuarios', socketProvider.notification),
       body: userProvider.users.isNotEmpty
           ? ListView.builder(
               itemCount: userProvider.users.length,

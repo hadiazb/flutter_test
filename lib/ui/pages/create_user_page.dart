@@ -17,14 +17,13 @@ class CreateUserPage extends StatefulWidget {
 
 class _CreateUserPageState extends State<CreateUserPage> {
   User user = User(Name: '', LastName: '', Phone: '');
-  bool notification = false;
 
   @override
   void initState() {
     super.initState();
-    final socketProvider = Provider.of<SocketProvider>(context, listen: false);
+    final socketProvider = Provider.of<SocketService>(context, listen: false);
     socketProvider.socket.on('create-user', (payload) {
-      notification = true;
+      socketProvider.createNotification();
       if (mounted) {
         setState(() {});
       }
@@ -34,12 +33,14 @@ class _CreateUserPageState extends State<CreateUserPage> {
   @override
   Widget build(BuildContext context) {
     final userProvider = Provider.of<UsersProvider>(context);
+    final socketProvider = Provider.of<SocketService>(context, listen: true);
     final _controllerName = TextEditingController();
     final _controllerPhone = TextEditingController();
     final _controllerLastName = TextEditingController();
 
     return Scaffold(
-        appBar: appBarTheme(context, 'Crear Usuario', notification),
+        appBar:
+            appBarTheme(context, 'Crear Usuario', socketProvider.notification),
         body: Container(
           margin: const EdgeInsets.all(20),
           child: Form(

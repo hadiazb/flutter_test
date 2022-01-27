@@ -15,15 +15,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  bool notification = false;
-
   @override
   void initState() {
     super.initState();
 
-    final socketProvider = Provider.of<SocketProvider>(context, listen: false);
+    final socketProvider = Provider.of<SocketService>(context, listen: false);
     socketProvider.socket.on('create-user', (payload) {
-      notification = true;
+      socketProvider.createNotification();
       if (mounted) {
         setState(() {});
       }
@@ -37,8 +35,10 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final socketProvider = Provider.of<SocketService>(context, listen: true);
+
     return Scaffold(
-        appBar: appBarTheme(context, 'Home', notification),
+        appBar: appBarTheme(context, 'Home', socketProvider.notification),
         body: Column(
           children: [
             const Divider(),
@@ -80,6 +80,45 @@ class _HomePageState extends State<HomePage> {
               ),
               onTap: () {
                 Navigator.pushNamed(context, CreateUserPage.routeName);
+              },
+            ),
+            const Divider(),
+            ListTile(
+              leading: const Icon(
+                Icons.store,
+                size: 30,
+                color: Colors.indigo,
+              ),
+              title: const Text(
+                'Markets-Categories',
+                style: TextStyle(color: Colors.indigo, fontSize: 21),
+              ),
+              subtitle: const Text(
+                'Mira todos los Markets-Categories',
+                style: TextStyle(fontSize: 14),
+              ),
+              onTap: () {
+                Navigator.pushNamed(context, MarketsCategoriesPage.routeName);
+              },
+            ),
+            const Divider(),
+            ListTile(
+              leading: const Icon(
+                Icons.create_outlined,
+                size: 30,
+                color: Colors.indigo,
+              ),
+              title: const Text(
+                'Crear Markets-Categories',
+                style: TextStyle(color: Colors.indigo, fontSize: 21),
+              ),
+              subtitle: const Text(
+                'Crea un Market-Categorie',
+                style: TextStyle(fontSize: 14),
+              ),
+              onTap: () {
+                Navigator.pushNamed(
+                    context, CreateMarketCategoriesPage.routeName);
               },
             ),
           ],

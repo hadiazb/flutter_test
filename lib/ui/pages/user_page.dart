@@ -15,8 +15,6 @@ class UserPage extends StatefulWidget {
 }
 
 class _UserPageState extends State<UserPage> {
-  bool notification = false;
-
   @override
   void initState() {
     super.initState();
@@ -26,9 +24,9 @@ class _UserPageState extends State<UserPage> {
       userProvider.getById(user.Id.toString());
     });
 
-    final socketProvider = Provider.of<SocketProvider>(context, listen: false);
+    final socketProvider = Provider.of<SocketService>(context, listen: false);
     socketProvider.socket.on('create-user', (payload) {
-      notification = true;
+      socketProvider.createNotification();
       if (mounted) {
         setState(() {});
       }
@@ -43,11 +41,13 @@ class _UserPageState extends State<UserPage> {
   @override
   build(BuildContext context) {
     final User userData = ModalRoute.of(context)!.settings.arguments as User;
+    final socketProvider = Provider.of<SocketService>(context, listen: true);
     final userProvider = Provider.of<UsersProvider>(context);
     final user = userProvider.user;
 
     return Scaffold(
-        appBar: appBarTheme(context, userData.Name.toString(), notification),
+        appBar: appBarTheme(
+            context, userData.Name.toString(), socketProvider.notification),
         body: user.Id != null
             ? Container(
                 margin: const EdgeInsets.all(20),

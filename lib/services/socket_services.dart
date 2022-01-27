@@ -5,7 +5,7 @@ import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 enum ServerStatus { online, offline, connecting }
 
-class SocketProvider with ChangeNotifier {
+class SocketService with ChangeNotifier {
   ServerStatus _serverStatus = ServerStatus.connecting;
   final IO.Socket _socket = IO.io('http://192.168.1.35:3000', {
     "transports": ["websocket"],
@@ -14,9 +14,20 @@ class SocketProvider with ChangeNotifier {
 
   ServerStatus get serverStatus => _serverStatus;
   IO.Socket get socket => _socket;
+  bool notification = false;
 
-  SocketProvider() {
+  SocketService() {
     _initConfig();
+  }
+
+  void createNotification() {
+    notification = true;
+    notifyListeners();
+  }
+
+  void deleteNotification() {
+    notification = false;
+    notifyListeners();
   }
 
   void _initConfig() {

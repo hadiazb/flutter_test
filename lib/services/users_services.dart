@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // Ours
-import 'package:app_llevaloo/domain/models/user/user_model.dart';
+import 'package:app_llevaloo/domain/models/models.dart';
 import 'package:app_llevaloo/config/case_use.dart';
 
 class UsersProvider with ChangeNotifier {
@@ -20,17 +20,17 @@ class UsersProvider with ChangeNotifier {
   }
 
   void getUsers() async {
-    users = await _userUseCase.getUserUseCase.getAll();
+    users = await _userUseCase.crudUserUseCase.getAll();
     notifyListeners();
   }
 
   void getById(String id) async {
-    user = await _userUseCase.getUserUseCase.getById(id);
+    user = await _userUseCase.crudUserUseCase.getById(id);
     notifyListeners();
   }
 
   void createUser(User body) async {
-    await _userUseCase.createUserUseCase.createUser(body);
+    await _userUseCase.crudUserUseCase.createUser(body);
     notifyListeners();
   }
 

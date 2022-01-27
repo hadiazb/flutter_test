@@ -28,7 +28,11 @@ class AppState extends StatelessWidget {
           lazy: true,
         ),
         ChangeNotifierProvider(
-          create: (_) => SocketProvider(),
+          create: (_) => SocketService(),
+          lazy: true,
+        ),
+        ChangeNotifierProvider(
+          create: (_) => MarketsCategoriesProvider(),
           lazy: true,
         ),
       ],

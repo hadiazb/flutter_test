@@ -1,4 +1,4 @@
-import 'package:app_llevaloo/domain/models/user/user_model.dart';
+import 'package:app_llevaloo/domain/models/models.dart';
 
 abstract class UserGateway {
   Future<List<User>> getAll();
