@@ -1,5 +1,4 @@
-import 'dart:developer';
-
+import 'package:app_llevaloo/infraestructure/ui/pages/pages.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -8,7 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:app_llevaloo/domain/models/models.dart';
 
 // UI
-import 'package:app_llevaloo/ui/widgets/widgets.dart';
+import 'package:app_llevaloo/infraestructure/ui/widgets/widgets.dart';
 
 // State
 import 'package:app_llevaloo/services/users_services.dart';
@@ -57,8 +56,32 @@ class _ListUsersPage extends State<ListUsersPage> {
               itemCount: userProvider.users.length,
               scrollDirection: Axis.vertical,
               itemBuilder: (_, int i) {
-                return CardUserWidget(
-                    users: userProvider, user: userProvider.users[i]);
+                return Center(
+                  child: Card(
+                    child: Column(mainAxisSize: MainAxisSize.min, children: [
+                      ListTile(
+                        leading: const Icon(Icons.person),
+                        title: Text(
+                            'Nombre:  ${userProvider.users[i].Name.toString()}'),
+                        subtitle:
+                            Text('Id:  ${userProvider.users[i].Id.toString()}'),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          TextButton(
+                            child: const Text('VER USER'),
+                            onPressed: () {
+                              Navigator.pushNamed(context, UserPage.routeName,
+                                  arguments: userProvider.users[i]);
+                            },
+                          ),
+                          const SizedBox(width: 8),
+                        ],
+                      ),
+                    ]),
+                  ),
+                );
               })
           : const Text('loading...'),
     );

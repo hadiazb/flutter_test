@@ -3,9 +3,9 @@ import 'package:provider/provider.dart';
 
 // Ours
 import 'package:app_llevaloo/services/services.dart';
-import 'package:app_llevaloo/ui/widgets/widgets.dart';
+import 'package:app_llevaloo/infraestructure/ui/widgets/widgets.dart';
 import 'package:app_llevaloo/domain/models/models.dart';
-import 'package:app_llevaloo/ui/pages/pages.dart';
+import 'package:app_llevaloo/infraestructure/ui/pages/pages.dart';
 
 class CreateUserPage extends StatefulWidget {
   const CreateUserPage({Key? key}) : super(key: key);

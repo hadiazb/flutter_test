@@ -10,7 +10,11 @@ class UserApi extends UserGateway {
   Future<String> _getJsonData(String endPoint) async {
     final url = Uri.http(_baseUrl, endPoint);
     final response = await http.get(url);
-    return response.body;
+    print('Respuesta 3 ${response.statusCode}');
+    if (response.statusCode == 200) {
+      return response.body;
+    }
+    return response.statusCode.toString();
   }
 
   Future<String> _postJsonData(String endPoint, User body) async {

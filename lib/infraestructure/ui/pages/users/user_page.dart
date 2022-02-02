@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 // Ours
 import 'package:app_llevaloo/domain/models/models.dart';
-import 'package:app_llevaloo/ui/widgets/widgets.dart';
+import 'package:app_llevaloo/infraestructure/ui/widgets/widgets.dart';
 import 'package:app_llevaloo/services/services.dart';
 
 class UserPage extends StatefulWidget {

@@ -1,9 +1,9 @@
-import 'package:app_llevaloo/ui/pages/pages.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:app_llevaloo/services/services.dart';
-import 'package:app_llevaloo/ui/widgets/widgets.dart';
+import 'package:app_llevaloo/infraestructure/ui/widgets/widgets.dart';
+import 'package:app_llevaloo/infraestructure/ui/pages/pages.dart';
 
 class MarketsCategoriesPage extends StatefulWidget {
   const MarketsCategoriesPage({Key? key}) : super(key: key);

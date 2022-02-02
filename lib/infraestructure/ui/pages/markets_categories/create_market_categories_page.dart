@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:app_llevaloo/ui/widgets/widgets.dart';
+import 'package:app_llevaloo/infraestructure/ui/widgets/widgets.dart';
 
 class CreateMarketCategoriesPage extends StatelessWidget {
   const CreateMarketCategoriesPage({Key? key}) : super(key: key);
